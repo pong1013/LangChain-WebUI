@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: ./chatbot-gui
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+    depends_on:
+      - backend
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro # 掛載 SSL 證書
+
+  backend:
+    build:
+      context: ./chatbot-server
+      dockerfile: Dockerfile
+    ports:
+      - "3035:3035" # 后端服务
+    restart: unless-stopped
+    env_file:
+      - ./chatbot-server/.env
