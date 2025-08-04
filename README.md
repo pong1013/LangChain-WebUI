@@ -1,206 +1,205 @@
 # LangChain-WebUI
 
-## 🚀 專案介紹
+## 🚀 Project Introduction
 
-LangChain-WebUI 是一個強大的聊天機器人生成器和管理平台。它允許用戶通過簡單的配置界面，快速創建和部署基於 LangChain 的客製化聊天機器人。
+LangChain-WebUI is a powerful chatbot generator and management platform. It allows users to quickly create and deploy customized chatbots based on LangChain through a simple configuration interface.
 
-### ✨ 核心功能
+### ✨ Core Features
 
-- **🎯 一鍵生成**: 通過 Web UI 配置，快速生成完整的聊天機器人
-- **📚 知識庫管理**: 支援 Markdown 文件作為知識庫
-- **🐳 Docker 容器化**: 自動生成 Docker 容器，便於部署
-- **🎛️ 統一管理**: 集中管理所有生成的聊天機器人服務
-- **🔧 客製化配置**: 支援自定義機器人名稱、描述和功能
+- **🎯 One-Click Generation**: Quickly generate complete chatbots through Web UI configuration
+- **📚 Knowledge Base Management**: Support Markdown files as knowledge base
+- **🐳 Docker Containerization**: Automatically generate Docker containers for easy deployment
+- **🎛️ Unified Management**: Centralized management of all generated chatbot services
+- **🔧 Customizable Configuration**: Support custom bot names, descriptions, and functionality
 
-### 🏗️ 架構概覽
+### 🏗️ Architecture Overview
 
 ```
-LangChain-WebUI (主控台)
-├── 聊天機器人配置界面
-├── 知識庫上傳管理
-├── 機器人生成引擎
-└── 容器管理系統
+LangChain-WebUI (Control Panel)
+├── Chatbot Configuration Interface
+├── Knowledge Base Upload Management
+├── Bot Generation Engine
+└── Container Management System
     ├── ChatBot-1 (Container)
     ├── ChatBot-2 (Container)
     └── ChatBot-N (Container)
 ```
 
-## 🎯 使用流程
+## 🎯 Usage Workflow
 
-### 1. 創建新聊天機器人
-1. 在 Web UI 中填寫機器人配置：
-   - 機器人名稱
-   - 機器人描述
-   - API 金鑰配置
-2. 上傳 Markdown 文件作為知識庫
-3. 點擊 "Build & Export" 按鈕
+### 1. Create New Chatbot
+1. Fill in bot configuration in Web UI:
+   - Bot name
+   - Bot description
+   - API key configuration
+2. Upload Markdown files as knowledge base
+3. Click "Build & Export" button
 
-### 2. 自動生成
-系統會自動：
-- 生成完整的聊天機器人代碼
-- 創建 Docker 容器配置
-- 設置必要的環境變數
-- 部署到獨立的容器中
+### 2. Automatic Generation
+The system will automatically:
+- Generate complete chatbot code
+- Create Docker container configuration
+- Set up necessary environment variables
+- Deploy to independent containers
 
-### 3. 管理服務
-- 查看所有運行中的聊天機器人
-- 啟動/停止/重啟服務
-- 監控服務狀態
-- 查看日誌和統計
+### 3. Service Management
+- View all running chatbots
+- Start/stop/restart services
+- Monitor service status
+- View logs and statistics
 
-## 🛠️ 技術架構
+## 🛠️ Technical Architecture
 
-### 前端 (React + TypeScript)
+### Frontend (React + TypeScript)
 ```
 chatbot-gui/
 ├── src/
 │   ├── components/
-│   │   ├── BotCreator/          # 機器人創建界面
-│   │   ├── BotManager/          # 機器人管理界面
-│   │   ├── KnowledgeBase/       # 知識庫管理
-│   │   └── Dashboard/           # 主控台儀表板
+│   │   ├── BotCreator/          # Bot creation interface
+│   │   ├── BotManager/          # Bot management interface
+│   │   ├── KnowledgeBase/       # Knowledge base management
+│   │   └── Dashboard/           # Control panel dashboard
 │   ├── services/
-│   │   ├── botService.ts        # 機器人服務 API
-│   │   └── containerService.ts  # 容器管理 API
+│   │   ├── botService.ts        # Bot service API
+│   │   └── containerService.ts  # Container management API
 │   └── types/
-│       └── bot.ts              # 類型定義
+│       └── bot.ts              # Type definitions
 ```
 
-### 後端 (FastAPI + Python)
+### Backend (FastAPI + Python)
 ```
 chatbot-server/
 ├── api/
-│   ├── bot_creator.py          # 機器人生成 API
-│   ├── container_manager.py    # 容器管理 API
-│   └── knowledge_base.py       # 知識庫管理 API
+│   ├── bot_creator.py          # Bot generation API
+│   ├── container_manager.py    # Container management API
+│   └── knowledge_base.py       # Knowledge base management API
 ├── generators/
-│   ├── bot_generator.py        # 機器人代碼生成器
-│   ├── docker_generator.py     # Docker 配置生成器
-│   └── template_engine.py      # 模板引擎
+│   ├── bot_generator.py        # Bot code generator
+│   ├── docker_generator.py     # Docker configuration generator
+│   └── template_engine.py      # Template engine
 ├── services/
-│   ├── container_service.py    # Docker 容器服務
-│   └── file_service.py         # 文件管理服務
+│   ├── container_service.py    # Docker container service
+│   └── file_service.py         # File management service
 └── templates/
-    ├── bot_template/           # 機器人模板
-    └── docker_template/        # Docker 模板
+    ├── bot_template/           # Bot templates
+    └── docker_template/        # Docker templates
 ```
 
-## 🚀 快速開始
+## 🚀 Quick Start
 
-### 環境要求
+### Requirements
 - Docker & Docker Compose
 - Node.js 16+
 - Python 3.8+
 
-### 安裝步驟
+### Installation Steps
 
-1. **克隆專案**
+1. **Clone the project**
 ```bash
-git clone https://github.com/your-username/LangChain-WebUI.git
+git clone https://github.com/pong1013/LangChain-WebUI.git
 cd LangChain-WebUI
 ```
 
-2. **配置環境變數**
+2. **Configure environment variables**
 ```bash
 cp chatbot-server/.env_example chatbot-server/.env
-# 編輯 .env 文件，填入您的 API 金鑰
+# Edit .env file with your API keys
 ```
 
-3. **啟動服務**
+3. **Start services**
 ```bash
 docker-compose up -d --build
 ```
 
-4. **訪問 Web UI**
+4. **Access Web UI**
 ```
 http://localhost:3000
 ```
 
-## 📋 配置說明
+## 📋 Configuration Guide
 
-### 機器人配置 (.env_example)
+### Bot Configuration (.env_example)
 ```env
-# OpenAI 配置
+# OpenAI Configuration
 OPENAI_API_KEY=your_openai_api_key
 OPENAI_MODEL=gpt-4
 EMBEDDING_MODEL=text-embedding-ada-002
 
-# 資料庫配置
+# Database Configuration
 MONGO_URI=your_mongodb_uri
 DATABASE_NAME=ChatBotDB
 
-# 機器人配置
+# Bot Configuration
 BOT_NAME=My Custom Bot
 BOT_DESCRIPTION=A helpful assistant for my documents
 ADMIN_USER=admin@example.com
 ```
 
-### 知識庫文件
-- 支援 Markdown (.md) 格式
-- 自動處理文件結構和連結
-- 支援圖片和表格
+### Knowledge Base Files
+- Support Markdown (.md) format
+- Automatic processing of file structure and links
+- Support for images and tables
 
-## 🎯 未來目標
+## 🎯 Future Goals
 
-### Phase 1: 基礎功能 (Q1 2024)
-- [ ] **Web UI 界面**: 完整的機器人創建和管理界面
-- [ ] **模板系統**: 預設多種機器人模板
-- [ ] **知識庫處理**: 支援多種文件格式
-- [ ] **容器管理**: 基本的 Docker 容器生命週期管理
+### Phase 1: Basic Features
+- [ ] **Web UI Interface**: Complete bot creation and management interface
+- [ ] **Template System**: Multiple preset bot templates
+- [ ] **Knowledge Base Processing**: Support for multiple file formats
+- [ ] **Container Management**: Basic Docker container lifecycle management
 
-### Phase 2: 進階功能 (Q2 2024)
-- [ ] **多模型支援**: GPT-4, Claude, Gemini 等
-- [ ] **插件系統**: 可擴展的插件架構
-- [ ] **版本管理**: 機器人版本控制和回滾
-- [ ] **性能監控**: 實時性能監控和警報
+### Phase 2: Advanced Features
+- [ ] **Multi-Model Support**: GPT-4, Claude, Gemini, etc.
+- [ ] **Plugin System**: Extensible plugin architecture
+- [ ] **Version Management**: Bot version control and rollback
+- [ ] **Performance Monitoring**: Real-time performance monitoring and alerts
 
-### Phase 3: 企業功能 (Q3 2024)
-- [ ] **多租戶支援**: 企業級多用戶管理
-- [ ] **API 網關**: 統一的 API 訪問控制
-- [ ] **備份恢復**: 自動備份和災難恢復
-- [ ] **審計日誌**: 完整的操作審計記錄
+### Phase 3: Enterprise Features
+- [ ] **Multi-Tenant Support**: Enterprise-level multi-user management
+- [ ] **API Gateway**: Unified API access control
+- [ ] **Backup & Recovery**: Automatic backup and disaster recovery
+- [ ] **Audit Logging**: Complete operation audit records
 
-### Phase 4: 智能化 (Q4 2024)
-- [ ] **自動優化**: 基於使用數據的模型優化
-- [ ] **智能路由**: 自動選擇最佳模型
-- [ ] **A/B 測試**: 機器人性能對比測試
-- [ ] **預測分析**: 使用趨勢預測和容量規劃
+### Phase 4: Intelligence
+- [ ] **Auto-Optimization**: Model optimization based on usage data
+- [ ] **Smart Routing**: Automatic selection of best models
+- [ ] **A/B Testing**: Bot performance comparison testing
+- [ ] **Predictive Analytics**: Usage trend prediction and capacity planning
 
-## 🤝 貢獻指南
+## 🤝 Contributing
+We welcome all forms of contributions!
 
-我們歡迎所有形式的貢獻！
+### Development Environment Setup
+1. Fork this project
+2. Create feature branch: `git checkout -b feature/AmazingFeature`
+3. Commit changes: `git commit -m 'Add AmazingFeature'`
+4. Push branch: `git push origin feature/AmazingFeature`
+5. Open Pull Request
 
-### 開發環境設置
-1. Fork 本專案
-2. 創建功能分支: `git checkout -b feature/AmazingFeature`
-3. 提交更改: `git commit -m 'Add AmazingFeature'`
-4. 推送分支: `git push origin feature/AmazingFeature`
-5. 開啟 Pull Request
+### Contribution Types
+- 🐛 Bug fixes
+- ✨ New feature development
+- 📚 Documentation improvements
+- 🎨 UI/UX optimization
+- ⚡ Performance optimization
 
-### 貢獻類型
-- 🐛 Bug 修復
-- ✨ 新功能開發
-- 📚 文檔改進
-- 🎨 UI/UX 優化
-- ⚡ 性能優化
+## 📄 License
 
-## 📄 授權
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-本專案採用 MIT 授權 - 查看 [LICENSE](LICENSE) 文件了解詳情。
+## 📞 Contact Us
 
-## 📞 聯繫我們
-
-- 🌐 專案網站: [https://langchain-webui.com](https://langchain-webui.com)
-- 📧 郵箱: [your-email@example.com](mailto:your-email@example.com)
-- 💬 Discord: [加入我們的社群](https://discord.gg/langchain-webui)
-- 🐛 Issues: [GitHub Issues](https://github.com/your-username/LangChain-WebUI/issues)
-
----
-
-## 🎉 致謝
-
-感謝所有為這個專案做出貢獻的開發者和用戶！
+- 🌐 Project Website: [https://langchain-webui.com](https://langchain-webui.com)
+- 📧 Email: [pong861013@gmail.com](mailto:pong861013@gmail.com)
+- 💬 Discord: [Join our community](https://discord.gg/langchain-webui)
+- 🐛 Issues: [GitHub Issues](https://github.com/pong1013/LangChain-WebUI/issues)
 
 ---
 
-*LangChain-WebUI - 讓每個人都能輕鬆創建自己的 AI 聊天機器人* 🤖✨
+## 🎉 Acknowledgments
+
+Thanks to all developers and users who have contributed to this project!
+
+---
+
+*LangChain-WebUI - Making it easy for everyone to create their own AI chatbots* 🤖✨
