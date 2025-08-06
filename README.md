@@ -11,6 +11,8 @@ LangChain-WebUI is a powerful chatbot generator and management platform. It allo
 - **🐳 Docker Containerization**: Automatically generate Docker containers for easy deployment
 - **🎛️ Unified Management**: Centralized management of all generated chatbot services
 - **🔧 Customizable Configuration**: Support custom bot names, descriptions, and functionality
+- **🤖 AI-Powered Chat**: Advanced conversational AI with context awareness
+- **👥 User Management**: Role-based access control and usage tracking
 
 ### 🏗️ Architecture Overview
 
@@ -66,23 +68,28 @@ chatbot-gui/
 │       └── bot.ts              # Type definitions
 ```
 
-### Backend (FastAPI + Python)
+### Backend (FastAPI + Python) - Optimized Architecture
 ```
 chatbot-server/
-├── api/
-│   ├── bot_creator.py          # Bot generation API
-│   ├── container_manager.py    # Container management API
-│   └── knowledge_base.py       # Knowledge base management API
-├── generators/
-│   ├── bot_generator.py        # Bot code generator
-│   ├── docker_generator.py     # Docker configuration generator
-│   └── template_engine.py      # Template engine
-├── services/
-│   ├── container_service.py    # Docker container service
-│   └── file_service.py         # File management service
-└── templates/
-    ├── bot_template/           # Bot templates
-    └── docker_template/        # Docker templates
+├── main.py                      # Application entry point
+├── requirements.txt             # Python dependencies
+├── config/                      # Configuration modules
+│   ├── database.py             # MongoDB configuration
+│   └── openai.py               # OpenAI API configuration
+├── controllers/                 # Controller layer (API endpoints)
+│   ├── chat.py                 # Chat controller
+│   ├── document.py             # Document controller
+│   └── embedding.py            # Embedding controller
+├── services/                    # Business logic layer
+│   ├── chat.py                 # Chat service
+│   └── vector.py               # Vector database service
+├── models/                      # Data model layer (Database Models)
+│   └── user.py                 # User model
+├── schemas/                     # API model layer (Pydantic Schemas)
+│   └── user.py                 # User request/response models
+├── routers/                     # Route configuration
+│   └── routers.py              # Route integration
+└── vector_store/               # Vector database
 ```
 
 ## 🚀 Quick Start
@@ -116,6 +123,24 @@ docker-compose up -d --build
 http://localhost:3000
 ```
 
+### Manual Setup (Development)
+
+1. **Setup Backend**
+```bash
+cd chatbot-server
+python3 -m venv venv
+source venv/bin/activate  # macOS/Linux
+pip install -r requirements.txt
+python3 main.py
+```
+
+2. **Setup Frontend**
+```bash
+cd chatbot-gui
+npm install
+npm start
+```
+
 ## 📋 Configuration Guide
 
 ### Bot Configuration (.env_example)
@@ -123,7 +148,7 @@ http://localhost:3000
 # OpenAI Configuration
 OPENAI_API_KEY=your_openai_api_key
 OPENAI_MODEL=gpt-4
-EMBEDDING_MODEL=text-embedding-ada-002
+EMBEDDING_MODEL=text-embedding-3-large
 
 # Database Configuration
 MONGO_URI=your_mongodb_uri
@@ -140,13 +165,52 @@ ADMIN_USER=admin@example.com
 - Automatic processing of file structure and links
 - Support for images and tables
 
+## 🧪 API Testing
+
+### Test Chatbot API
+```bash
+# Test question answering
+curl -X POST "http://localhost:8000/chat/ask" \
+  -H "Content-Type: application/json" \
+  -d '{"question": "你好", "user_email": "test@example.com"}'
+
+# Test user status
+curl -X GET "http://localhost:8000/chat/user-status?user_email=test@example.com"
+
+# Test clean chat history
+curl -X GET "http://localhost:8000/chat/clean-chat-history"
+```
+
+### API Documentation
+```
+http://localhost:8000/docs
+```
+
+## 🎯 Recent Improvements
+
+### Backend Architecture Optimization
+- ✅ **Standardized Naming**: Consistent file naming convention
+- ✅ **MVC Architecture**: Clear separation of concerns
+- ✅ **Schema Layer**: Pydantic models for API validation
+- ✅ **Error Handling**: Comprehensive error management
+- ✅ **Type Safety**: Full type hints and validation
+- ✅ **Documentation**: Complete API documentation
+
+### Key Features
+- **User Management**: Role-based access control
+- **Usage Tracking**: Daily question limits and analytics
+- **Vector Search**: Advanced knowledge base retrieval
+- **Conversation History**: Context-aware conversations
+- **Admin Controls**: Administrative functions and monitoring
+
 ## 🎯 Future Goals
 
-### Phase 1: Basic Features
-- [ ] **Web UI Interface**: Complete bot creation and management interface
-- [ ] **Template System**: Multiple preset bot templates
-- [ ] **Knowledge Base Processing**: Support for multiple file formats
-- [ ] **Container Management**: Basic Docker container lifecycle management
+### Phase 1: Basic Features ✅
+- [x] **Web UI Interface**: Complete bot creation and management interface
+- [x] **Template System**: Multiple preset bot templates
+- [x] **Knowledge Base Processing**: Support for multiple file formats
+- [x] **Container Management**: Basic Docker container lifecycle management
+- [x] **API Architecture**: Optimized FastAPI backend structure
 
 ### Phase 2: Advanced Features
 - [ ] **Multi-Model Support**: GPT-4, Claude, Gemini, etc.

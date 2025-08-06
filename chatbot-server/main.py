@@ -1,21 +1,27 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routers import routers
-from config.mongo_db import init_db
+from config.database import init_db, close_db
 import sys
 import os
 import asyncio
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-# Initial Database
+# 資料庫生命週期管理
 async def lifespan(app: FastAPI):
-    print("Starting up...")
+    print("🚀 Starting up...")
     await init_db()  # 初始化 MongoDB
     yield
-    print("Shutting down...")
+    print("🔄 Shutting down...")
+    await close_db()  # 關閉資料庫連接
 
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(
+    title="LangChain ChatBot API",
+    description="基於 LangChain 的智能聊天機器人 API",
+    version="1.0.0",
+    lifespan=lifespan
+)
 
 # CORS 配置
 app.add_middleware(
@@ -29,8 +35,6 @@ app.add_middleware(
 # 引入路由
 app.include_router(routers.router)
 
-
-
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=3035)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
